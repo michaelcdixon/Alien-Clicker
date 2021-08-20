@@ -1,22 +1,30 @@
-// context.beginPath();
-// context.rect(650, 565, 130, 20);
-// context.fillStyle = "#FF0000";
-// context.fill();
-// context.closePath();
+context.beginPath();
+context.rect(650, 565, 130, 20);
+context.fillStyle = "#FF0000";
+context.fill();
+context.closePath();
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
 class Platform {
-	constructor() {
+	constructor(x, y, width, height) {
 		this.x = 650;
 		this.y = 565;
-		this.width = 130;
-		this.height = 20;
+		this.width = width;
+		this.height = height;
+		this.speedX = 0;
+		this.speedY = 0;
 	}
 
 	//insert draw function
-	draw() {}
+	draw() {
+		context.beginPath();
+		context.rect(650, 565, 130, 20);
+		context.fillStyle = "#FF0000";
+		context.fill();
+		context.closePath();
+	}
 	//making the platform move
 
 	movePlatform(key) {

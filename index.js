@@ -16,9 +16,14 @@ const context = canvas.getContext("2d");
 // context.closePath();
 
 let currentGame;
+const testButton = document.querySelector("button");
+
+testButton.addEventListener("click", startGame());
 
 function startGame() {
+	currentGame = new Game();
 	currentGame.platform = new Platform();
+	currentGame.platform.draw();
 }
 
 document.addEventListener("keydown", keyDownHandler, false);
