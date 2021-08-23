@@ -1,1 +1,1 @@
-# Asteroid Clicker
+# Alien Clicker
