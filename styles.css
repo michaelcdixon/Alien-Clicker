@@ -1,6 +1,6 @@
-canvas {
-	background: #eee;
-	display: block;
-	margin: 0 auto;
-	border: 3px solid black;
+#myCanvas:active {
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-o-transform: scale(0.8);
+	transform: scale(0.8);
 }

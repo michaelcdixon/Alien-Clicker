@@ -1,41 +1,43 @@
-//Rendering canvas
-
 const canvas = document.getElementById("myCanvas");
-const context = canvas.getContext("2d");
+const context = canvas.getContent("2d");
 
-// fillRect(60, 60, 80, 40);
-// strokeRect(x, y, width, height);
-// clearRect(x, y, width, height);
-// context.fillStyle = "green";
-// context.fillRect(60, 60, 80, 40);
+const icon = new Icon(50, 50);
+let score = 0;
 
-// context.beginPath();
-// context.rect(650, 565, 130, 20);
-// context.fillStyle = "#FF0000";
-// context.fill();
-// context.closePath();
-
-let currentGame;
-const testButton = document.querySelector("button");
-
-testButton.addEventListener("click", startGame());
-
-function startGame() {
-	currentGame = new Game();
-	currentGame.platform = new Platform();
-	currentGame.platform.draw();
+function updateCanvas() {
+	icon.draw();
+	requestAnimationFrame(updateCanvas);
 }
 
-document.addEventListener("keydown", keyDownHandler, false);
+updateCanvas();
 
-function keyDownHandler(e) {
-	if (e.key === "Right" || e.key === "ArrowRight") {
-		rightPressed = false;
-	} else if (e.key === "Left" || e.key === "ArrowLeft") {
-		leftPressed = false;
+canvas.addEventListener("click", (e) => {
+	const coord = {
+		x: e.clientX,
+		y: e.clientY,
+	};
+
+	if (checkClickIcon(coord)) {
+		console.log("x", e.clientX);
+		console.log("y", e.clientY);
+		console.log("clicking icon");
+		score++;
+		scoreElement.innerHTML = score;
 	}
+});
+
+function checkClickIcon(mouseCoordinates) {
+	console.log(icon);
+	return !(
+		mouseCoordinates.x > icon.right() ||
+		mouseCoordinates.x < icon.left() ||
+		mouseCoordinates.y > icon.bottom() ||
+		mouseCoordinates.y < icon.top()
+	);
 }
 
-document.addEventListener("keydown", (e) => {
-	currentGame.platform.movePlatform(e.key);
-});
+const scoreElement = document.getElementById("score");
+icon.onclick = function () {
+	score++;
+	scoreElement.innerHTML = score;
+};
